@@ -57,7 +57,10 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200")); // Permite a tu Angular
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:4200",
+                "https://finance-tracker-frontend-tau-brown.vercel.app"
+                )); // Permite a tu Angular acceder a la API
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Permite el OPTIONS!
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type")); // Permite el Token
         configuration.setAllowCredentials(true);
