@@ -19,10 +19,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Solo insertamos datos si la tabla está completamente vacía
-        if (categoryRepository.count() == 0) {
 
-            System.out.println("Cargando categorías por defecto en la Base de Datos...");
+            System.out.println("Comprobando categorías en la Base de Datos...");
 
             // Categorías de GASTOS (Basado en lo que tenías en tu Frontend)
             Category vivienda = new Category("Vivienda", CategoryType.EXPENSE);
@@ -42,14 +40,7 @@ public class DataLoader implements CommandLineRunner {
             Category salario = new Category("Salario", CategoryType.INCOME);
             Category otrosIngresos = new Category("Otros Ingresos", CategoryType.INCOME);
 
-            // Guardamos todas de golpe
-            categoryRepository.saveAll(Arrays.asList(
-                    vivienda, transporte, servicios, deudas, comida, ocio, salud, otrosGastos, viajes, ropaCompras,
-                    ahorros, salario, otrosIngresos
-            ));
-
             System.out.println("¡Categorías creadas con éxito!");
-        }
     }
 
     // Método auxiliar para evitar duplicados
