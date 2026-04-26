@@ -51,4 +51,12 @@ public class DataLoader implements CommandLineRunner {
             System.out.println("¡Categorías creadas con éxito!");
         }
     }
+
+    // Método auxiliar para evitar duplicados
+    private void saveCategoryIfNotFound(String name, CategoryType type) {
+        if (!categoryRepository.existsByName(name)) {
+            categoryRepository.save(new Category(name, type));
+            System.out.println("Categoría creada: " + name);
+        }
+    }
 }
