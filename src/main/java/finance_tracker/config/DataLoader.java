@@ -20,34 +20,33 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-            System.out.println("Comprobando categorías en la Base de Datos...");
+        System.out.println("Comprobando categorías en la Base de Datos...");
 
-            // Categorías de GASTOS (Basado en lo que tenías en tu Frontend)
-            Category vivienda = new Category("Vivienda", CategoryType.EXPENSE);
-            Category transporte = new Category("Transporte", CategoryType.EXPENSE);
-            Category servicios = new Category("Servicios", CategoryType.EXPENSE);
-            Category deudas = new Category("Deudas", CategoryType.EXPENSE);
-            Category comida = new Category("Supermercado", CategoryType.EXPENSE);
-            Category ocio = new Category("Ocio y restaurantes", CategoryType.EXPENSE);
-            Category salud = new Category("Salud y Deporte", CategoryType.EXPENSE);
-            Category viajes = new Category("Viajes", CategoryType.EXPENSE);
-            Category ropaCompras = new Category("Ropa y Compras", CategoryType.EXPENSE);
-            Category otrosGastos = new Category("Otros Gastos", CategoryType.EXPENSE);
-            Category ahorros = new Category("Ahorros", CategoryType.EXPENSE); // Para el retorno de metas
+        // Categorías de GASTOS
+        saveCategoryIfNotFound("Vivienda", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Transporte", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Servicios", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Deudas", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Supermercado", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Ocio y restaurantes", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Salud y Deporte", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Viajes", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Ropa y Compras", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Otros Gastos", CategoryType.EXPENSE);
+        saveCategoryIfNotFound("Ahorros", CategoryType.EXPENSE);
 
+        // Categorías de INGRESOS
+        saveCategoryIfNotFound("Salario", CategoryType.INCOME);
+        saveCategoryIfNotFound("Otros Ingresos", CategoryType.INCOME);
 
-            // Categorías de INGRESOS
-            Category salario = new Category("Salario", CategoryType.INCOME);
-            Category otrosIngresos = new Category("Otros Ingresos", CategoryType.INCOME);
-
-            System.out.println("¡Categorías creadas con éxito!");
+        System.out.println("¡Categorías comprobadas/creadas con éxito!");
     }
 
     // Método auxiliar para evitar duplicados
     private void saveCategoryIfNotFound(String name, CategoryType type) {
         if (!categoryRepository.existsByName(name)) {
             categoryRepository.save(new Category(name, type));
-            System.out.println("Categoría creada: " + name);
+            System.out.println("✅ Categoría creada: " + name);
         }
     }
 }
