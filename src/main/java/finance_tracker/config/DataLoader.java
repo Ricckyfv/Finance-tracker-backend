@@ -29,20 +29,23 @@ public class DataLoader implements CommandLineRunner {
             Category transporte = new Category("Transporte", CategoryType.EXPENSE);
             Category servicios = new Category("Servicios", CategoryType.EXPENSE);
             Category deudas = new Category("Deudas", CategoryType.EXPENSE);
-            Category comida = new Category("Comida", CategoryType.EXPENSE);
-            Category ocio = new Category("Ocio", CategoryType.EXPENSE);
-            Category salud = new Category("Salud", CategoryType.EXPENSE);
+            Category comida = new Category("Supermercado", CategoryType.EXPENSE);
+            Category ocio = new Category("Ocio y restaurantes", CategoryType.EXPENSE);
+            Category salud = new Category("Salud y Deporte", CategoryType.EXPENSE);
+            Category viajes = new Category("Viajes", CategoryType.EXPENSE);
+            Category ropaCompras = new Category("Ropa y Compras", CategoryType.EXPENSE);
             Category otrosGastos = new Category("Otros Gastos", CategoryType.EXPENSE);
+            Category ahorros = new Category("Ahorros", CategoryType.EXPENSE); // Para el retorno de metas
+
 
             // Categorías de INGRESOS
             Category salario = new Category("Salario", CategoryType.INCOME);
-            Category ahorros = new Category("Ahorros", CategoryType.INCOME); // Para el retorno de metas
             Category otrosIngresos = new Category("Otros Ingresos", CategoryType.INCOME);
 
             // Guardamos todas de golpe
             categoryRepository.saveAll(Arrays.asList(
-                    vivienda, transporte, servicios, deudas, comida, ocio, salud, otrosGastos,
-                    salario, ahorros, otrosIngresos
+                    vivienda, transporte, servicios, deudas, comida, ocio, salud, otrosGastos, viajes, ropaCompras,
+                    ahorros, salario, otrosIngresos
             ));
 
             System.out.println("¡Categorías creadas con éxito!");
