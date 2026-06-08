@@ -1,9 +1,6 @@
 package finance_tracker.config;
 
-import finance_tracker.models.Category;
-import finance_tracker.models.CategoryType;
-import finance_tracker.models.Transaction;
-import finance_tracker.models.User;
+import finance_tracker.models.*;
 import finance_tracker.repositories.CategoryRepository;
 import finance_tracker.repositories.TransactionRepository;
 import finance_tracker.repositories.UserRepository;
@@ -56,12 +53,18 @@ public class DataLoader implements CommandLineRunner {
             testUser.setName("Test User");
             testUser.setEmail(email);
             testUser.setPassword(passwordEncoder.encode("password"));
+            testUser.setRole(Role.USER);
             testUser = userRepository.save(testUser);
             System.out.println("✅ Usuario de prueba creado: " + email);
 
             // Una vez creado el usuario, le generamos su historial financiero dinámico
-            System.out.println("Generando historial financiero para el reclutador...");
+            System.out.println("Generando historial financiero...");
             crearHistorialFinanciero(testUser);
+        }
+        else if(testUser.getRole() == null) {
+            testUser.setRole(Role.USER);
+            userRepository.save(testUser);
+            System.out.println("✅ Rol reparado y actualizado para el usuario de prueba");
         }
     }
 

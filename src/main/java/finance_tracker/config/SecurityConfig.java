@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Rutas de registro y login libres
-                        .requestMatchers("api/health").permitAll() // Ruta de health check libre
+                        .requestMatchers("api/v1/health").permitAll() // Ruta de health check libre
                         .anyRequest().authenticated() // Todo lo demás protegido
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
